@@ -1,26 +1,29 @@
-// meu primeiro código JavaScript 
+// // // meu primeiro código JavaScript 
+document.getElementById("configurar").onclick = function () {
+    let namePilot = parseFloat(document.querySelector("#nome").value);
+    let velocity = 0
+    let newVelocity = parseFloat(document.querySelector("#newvelocity").value);
+    let resposta = confirm('Você realmente deseja acelarar para: ' + newVelocity + 'km/s?')
+    let resultado;
 
-let namePilot = prompt('Nos informe o seu nome piloto/a')
-let velocity = 0
-let newVelocity = prompt('A que velocidade você gostaria de ir?')
-let resposta = confirm('Você realmente deseja acelarar para: ' + newVelocity + 'km/s?')
 
+    if (resposta == true) {
+        velocity = newVelocity
 
-if (resposta) {
-    velocity = newVelocity
+        if (newVelocity <= 0) {
+            resultado = namePilot + ' nave Parada'
+        } else if (newVelocity < 40) {
+            resultado = namePilot + ' devagar, podemos aumentar mais'
+        } else if (newVelocity >= 40 && newVelocity < 80) {
+            resultado = namePilot + ' boa velocidade para manter'
+        } else if (newVelocity >= 80 && newVelocity < 100) {
+            resultado = namePilot + ' velocidade alta, diminua por sua segurança'
+        } else {
+            resultado = namePilot + ' perigo!! velocidade muito alta, controle automático forçado.'
+            document.querySelector("#resultado").innerHTML = resultado;
 
-    if (newVelocity <= 0) {
-        alert(namePilot + ' nave Parada')
-    } else if (newVelocity < 40) {
-        alert(namePilot + ' devagar, podemos aumentar mais')
-    } else if (newVelocity >= 40 && newVelocity < 80) {
-        alert(namePilot + ' boa velocidade para manter')
-    } else if (newVelocity >= 80 && newVelocity < 100) {
-        alert(namePilot + ' velocidade alta, diminua por sua segurança')
-    } else {
-        alert(namePilot + ' perigo!! velocidade muito alta, controle automático forçado.')
+        }
     }
-}
-    alert(namePilot + '\nSua velocidade atual é: ' + velocity + "km/s")
-
-    
+    velocidade = namePilot + '\nSua velocidade atual é: ' + velocity + "km/s"
+    document.querySelector("#velocidade").innerHTML = resultado;
+};
